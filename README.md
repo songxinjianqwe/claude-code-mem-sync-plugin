@@ -34,8 +34,10 @@
 安装完成后，首次使用前需要初始化，指定你的记忆同步仓库（需提前在 GitHub 创建一个私有仓库）：
 
 ```
-/memory-sync:init
+/memory-sync:init git@github.com:yourname/my-claude-memory.git ~/dev/my-claude-memory
 ```
+
+第二个参数（本地路径）可省略，默认使用 `~/.claude-memory-sync`。
 
 安装过程中会交互式询问：
 - 记忆同步仓库地址（SSH 格式，如 `git@github.com:yourname/your-memory-repo.git`）
