@@ -7,9 +7,5 @@
     "url": "https://github.com/songxinjianqwe"
   },
   "repository": "https://github.com/songxinjianqwe/claude-code-mem-sync-plugin",
-  "license": "MIT",
-  "commands": [
-    "/memory-sync:push",
-    "/memory-sync:pull"
-  ]
+  "license": "MIT"
 }
