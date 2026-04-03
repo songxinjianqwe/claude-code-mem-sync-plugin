@@ -18,8 +18,26 @@
 ## 安装
 
 ```bash
-git clone git@github.com:songxinjianqwe/claude-code-mem-sync-plugin.git ~/dev/java/claude-code-mem-sync-plugin
-bash ~/dev/java/claude-code-mem-sync-plugin/install.sh
+git clone git@github.com:songxinjianqwe/claude-code-mem-sync-plugin.git
+cd claude-code-mem-sync-plugin
+bash install.sh
+```
+
+安装过程中会交互式询问：
+- 你的记忆同步仓库地址（SSH 格式，需提前在 GitHub 创建私有仓库）
+- 本地仓库存放路径
+
+配置保存在 `~/.claude/memory-sync-config.json`，可随时手动修改。
+
+## 配置文件
+
+`~/.claude/memory-sync-config.json`：
+
+```json
+{
+  "mem_sync_remote": "git@github.com:yourname/your-memory-repo.git",
+  "mem_sync_repo": "/path/to/local/memory-repo"
+}
 ```
 
 ## 使用
@@ -37,4 +55,4 @@ SessionStart hook 每天首次开会话时自动：
 
 - macOS / Linux
 - Git + SSH 已配置（能访问 GitHub）
-- Python 3（用于解析 JSON state 文件）
+- Python 3

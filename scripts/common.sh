@@ -5,8 +5,31 @@
 CLAUDE_HOME="${CLAUDE_HOME:-$HOME/.claude}"
 GLOBAL_CLAUDE_MD="$CLAUDE_HOME/CLAUDE.md"
 PROJECTS_DIR="$CLAUDE_HOME/projects"
-MEM_SYNC_REPO="${MEM_SYNC_REPO:-$HOME/dev/java/my-claude-code-mem-sharing}"
 STATE_FILE="$CLAUDE_HOME/memory-sync-state.json"
+CONFIG_FILE="$CLAUDE_HOME/memory-sync-config.json"
+
+# 从配置文件读取仓库设置（环境变量可覆盖）
+_read_config() {
+    local key="$1"
+    local default="$2"
+    if [ -f "$CONFIG_FILE" ]; then
+        python3 -c "
+import json
+try:
+    d = json.load(open('$CONFIG_FILE'))
+    print(d.get('$key', '$default'))
+except:
+    print('$default')
+" 2>/dev/null
+    else
+        echo "$default"
+    fi
+}
+
+# 记忆同步本地仓库路径
+MEM_SYNC_REPO="${MEM_SYNC_REPO:-$(_read_config mem_sync_repo "$HOME/dev/java/my-claude-code-mem-sharing")}"
+# 远程 GitHub 仓库地址（SSH）
+MEM_SYNC_REMOTE="${MEM_SYNC_REMOTE:-$(_read_config mem_sync_remote "")}"
 
 # ── 设备标识 ──────────────────────────────────────────────────────
 get_device_id() {

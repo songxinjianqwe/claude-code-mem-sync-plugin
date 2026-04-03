@@ -1,0 +1,16 @@
+{
+  "name": "claude-code-mem-sync-plugin",
+  "version": "1.0.0",
+  "description": "Sync Claude Code memory files (CLAUDE.md, memory/) across multiple devices via GitHub.",
+  "owner": {
+    "name": "Jasper Song",
+    "email": "songxinjianzx@163.com"
+  },
+  "plugins": [
+    {
+      "name": "memory-sync",
+      "source": "./",
+      "description": "Push and pull Claude Code memory files across devices using a private GitHub repository."
+    }
+  ]
+}

@@ -1,0 +1,15 @@
+{
+  "name": "memory-sync",
+  "version": "1.0.0",
+  "description": "Sync Claude Code memory files (CLAUDE.md, memory/) across multiple devices via a private GitHub repository. Supports incremental merge with AI-assisted conflict resolution.",
+  "author": {
+    "name": "Jasper Song",
+    "url": "https://github.com/songxinjianqwe"
+  },
+  "repository": "https://github.com/songxinjianqwe/claude-code-mem-sync-plugin",
+  "license": "MIT",
+  "commands": [
+    "/memory-sync:push",
+    "/memory-sync:pull"
+  ]
+}
