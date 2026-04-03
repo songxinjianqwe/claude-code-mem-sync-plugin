@@ -17,21 +17,31 @@
 
 ## 安装
 
+**第一步：添加插件市场**
+
+```
+/plugin marketplace add songxinjianqwe/claude-code-mem-sync-plugin
+```
+
+**第二步：安装插件**
+
+```
+/plugin install memory-sync@claude-code-mem-sync-plugin
+```
+
+**第三步：初始化配置**
+
+安装完成后，首次使用前需要初始化，指定你的记忆同步仓库（需提前在 GitHub 创建一个私有仓库）：
+
 ```bash
-git clone git@github.com:songxinjianqwe/claude-code-mem-sync-plugin.git
-cd claude-code-mem-sync-plugin
-bash install.sh
+bash ~/.claude/plugins/memory-sync/install.sh
 ```
 
 安装过程中会交互式询问：
-- 你的记忆同步仓库地址（SSH 格式，需提前在 GitHub 创建私有仓库）
+- 记忆同步仓库地址（SSH 格式，如 `git@github.com:yourname/your-memory-repo.git`）
 - 本地仓库存放路径
 
-配置保存在 `~/.claude/memory-sync-config.json`，可随时手动修改。
-
-## 配置文件
-
-`~/.claude/memory-sync-config.json`：
+配置保存在 `~/.claude/memory-sync-config.json`，可随时手动修改：
 
 ```json
 {
