@@ -36,16 +36,20 @@ get_device_id() {
     local hostname
     hostname=$(hostname -s 2>/dev/null || hostname)
 
-    # 取局域网 IP 的前三段作为网段标识
-    local subnet
-    subnet=$(ifconfig 2>/dev/null | grep "inet " | grep -v "127.0.0.1" | grep -v "100\." \
-        | awk '{print $2}' | head -1 | awk -F. '{print $1"."$2"."$3}')
+    # 取硬件 UUID 前 8 位作为设备唯一标识（macOS）
+    local hw_id
+    hw_id=$(system_profiler SPHardwareDataType 2>/dev/null | awk '/Hardware UUID/{print $3}' | cut -c1-8)
 
-    if [ -z "$subnet" ]; then
-        subnet="unknown"
+    # Linux fallback: 用 machine-id
+    if [ -z "$hw_id" ]; then
+        hw_id=$(cat /etc/machine-id 2>/dev/null | cut -c1-8)
     fi
 
-    echo "${hostname}_${subnet}"
+    if [ -z "$hw_id" ]; then
+        hw_id="unknown"
+    fi
+
+    echo "${hostname}_${hw_id}"
 }
 
 DEVICE_ID=$(get_device_id)
