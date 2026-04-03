@@ -4,9 +4,9 @@
 
 ## 执行步骤
 
-1. 运行 pull 脚本展示 diff：
+1. 定位插件脚本目录并运行 pull 脚本展示 diff：
    ```bash
-   bash ~/dev/java/claude-code-mem-sync-plugin/scripts/pull.sh
+   PLUGIN_SCRIPTS=$(find ~/.claude/plugins/cache/claude-code-mem-sync-plugin -name "pull.sh" 2>/dev/null | sort -V | tail -1 | xargs dirname) && bash "$PLUGIN_SCRIPTS/pull.sh"
    ```
 
 2. 读取 `/tmp/memory_sync_diff_*.txt` 中的内容，分析每个设备的变更：
@@ -22,7 +22,7 @@
    - 将确认的条目写入 `~/.claude/CLAUDE.md`
    - 对每个设备更新 state 文件：
      ```bash
-     bash ~/dev/java/claude-code-mem-sync-plugin/scripts/update-state.sh <device_id> <commit_hash>
+     PLUGIN_SCRIPTS=$(find ~/.claude/plugins/cache/claude-code-mem-sync-plugin -name "update-state.sh" 2>/dev/null | sort -V | tail -1 | xargs dirname) && bash "$PLUGIN_SCRIPTS/update-state.sh" <device_id> <commit_hash>
      ```
    - 清理临时文件：`rm -f /tmp/memory_sync_diff_*.txt /tmp/memory_sync_pending_commits.txt`
 

@@ -8,10 +8,16 @@ source "$SCRIPT_DIR/common.sh"
 info "设备标识: $DEVICE_ID"
 info "目标分支: $DEVICE_BRANCH"
 
+# ── 检查是否已初始化 ──────────────────────────────────────────────
+if [ ! -f "$CONFIG_FILE" ] || [ -z "$MEM_SYNC_REMOTE" ]; then
+    err "尚未初始化，请先运行 /memory-sync:init 完成配置"
+    exit 1
+fi
+
 # ── 确保仓库存在 ──────────────────────────────────────────────────
 if [ ! -d "$MEM_SYNC_REPO/.git" ]; then
     err "记忆同步仓库不存在: $MEM_SYNC_REPO"
-    err "请先运行 install.sh 初始化仓库"
+    err "请先运行 /memory-sync:init 初始化仓库"
     exit 1
 fi
 

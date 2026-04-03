@@ -6,8 +6,14 @@ set -euo pipefail
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 source "$SCRIPT_DIR/common.sh"
 
+if [ ! -f "$CONFIG_FILE" ] || [ -z "$MEM_SYNC_REMOTE" ]; then
+    err "尚未初始化，请先运行 /memory-sync:init 完成配置"
+    exit 1
+fi
+
 if [ ! -d "$MEM_SYNC_REPO/.git" ]; then
     err "记忆同步仓库不存在: $MEM_SYNC_REPO"
+    err "请先运行 /memory-sync:init 初始化仓库"
     exit 1
 fi
 

@@ -6,7 +6,7 @@
 
 1. 运行 push 脚本：
    ```bash
-   bash ~/dev/java/claude-code-mem-sync-plugin/scripts/push.sh
+   PLUGIN_SCRIPTS=$(find ~/.claude/plugins/cache/claude-code-mem-sync-plugin -name "push.sh" 2>/dev/null | sort -V | tail -1 | xargs dirname) && bash "$PLUGIN_SCRIPTS/push.sh"
    ```
 
 2. 告知用户推送结果（成功/失败/无变更）。

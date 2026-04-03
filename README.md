@@ -33,8 +33,8 @@
 
 安装完成后，首次使用前需要初始化，指定你的记忆同步仓库（需提前在 GitHub 创建一个私有仓库）：
 
-```bash
-bash ~/.claude/plugins/memory-sync/install.sh
+```
+/memory-sync:init
 ```
 
 安装过程中会交互式询问：
